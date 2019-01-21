@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"athena/api"
+	"github.com/brown-a2/athena/api"
 )
 
 func main() {
