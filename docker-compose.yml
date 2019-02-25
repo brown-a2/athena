@@ -1,13 +1,18 @@
 version: '3.7'
 services:
   app:
+    container_name: athena
     build: .
+    env_file: .env
     image: athena:latest
-    ports: 
+    volumes:
+      - .:/go/src/github.com/brown-a2/athena
+    working_dir: /go/src/github.com/brown-a2/athena
+    ports:
      - "8080:8080"
   nginx:
-    image: nginx:latest
+    container_name: athena_nginx
+    image: nginx:1.11.9
     build: ./config
     links:
      - "app:nginx"
-

@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  app:
+    container_name: athena-dev
+    build:
+      context: development/
+      dockerfile: Dockerfile
+    env_file: .env
+    image: athena-dev:latest
+    volumes:
+      - .:/go/src/github.com/brown-a2/athena
+    working_dir: /go/src/github.com/brown-a2/athena
+    depends_on:
+      - "nginx"
+  nginx:
+    container_name: athena_nginx
+    image: nginx:1.15.8-alpine
+    build: ./config
+    ports:
+      - "80:80"
